@@ -1,0 +1,46 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto:
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/drone_database
+    username: postgres
+    password: r00t34d0r.
+    driver-class-name: org.postgresql.Driver
+
+fwkcna:
+  security:
+    jwt:
+      clientId: upn
+      role: aud
+
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace
+        SQL: DEBUG
+        type.descriptor.sql.BasicBinder: TRACE
+  file:
+    path: logs
+    name: ${logging.file.path}/application.log
+
+server:
+  port: 8081
+
+
+management:
+  endpoint:
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: [info, health, metrics, prometheus]
