@@ -11,22 +11,26 @@ To use the configuration module the only required thing is open a connection wit
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: true
-        use_sql_comments: true
-        show-sql: false
+      ddl-auto: create
+    defer-datasource-initialization: true
 
   datasource:
-    url: jdbc:postgresql://${database_endpoint:port}/${database_name}
-    username: ${username}
-    password: ${password}
+    url: jdbc:postgresql://${SQL_HOST:localhost}:${PORT:5433}/${DBNAME:drone}
+    username: username
+    password: password
     driver-class-name: org.postgresql.Driver
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql
+
+server:
+  port: 8081
 
 ```
 
-You have to edit the database_endpoint, port, database_name, username and password with your own data and run in database ms_back/boot/src/main/resources/data.sql to check all functionalities in the MicroService.
+You have to edit the database_endpoint, port, database_name, username and password with your own data and run to check all functionalities in the MicroService.
 
 
 In api-rest module you can find a postman collection with operations needed
