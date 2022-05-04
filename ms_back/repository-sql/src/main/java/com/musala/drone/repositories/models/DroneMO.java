@@ -2,12 +2,11 @@ package com.musala.drone.repositories.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,12 +15,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
-import java.util.Date;
 import java.util.Set;
 
 @Getter
@@ -45,6 +41,10 @@ public class DroneMO {
     @Max(value = 500, message = "Weight must be up 500")
     private int weight;
 
+    @Column(name = "battery")
+    @Max(value = 100, message = "Battery level must be up 100")
+    private int battery;
+
 
     @Column(name = "model")
     @Enumerated(EnumType.STRING)
@@ -54,7 +54,7 @@ public class DroneMO {
     @Enumerated(EnumType.STRING)
     private StateTypesMOEnum state;
 
-    @OneToMany(mappedBy = "drone", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "drone", fetch = FetchType.LAZY,cascade= CascadeType.REMOVE)
     private Set<LoadMO> loads;
 
 }

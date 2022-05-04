@@ -1,29 +1,30 @@
 package com.musala.drone.repositories.adapters;
 
-import com.musala.drone.domain.Drone;
 import com.musala.drone.domain.Load;
 import com.musala.drone.ports.out.LoadRepositoryPort;
 import com.musala.drone.repositories.LoadMOJpaRepository;
-import com.musala.drone.repositories.LoadMOJpaRepository;
-import com.musala.drone.repositories.mappers.LoadMapper;
 import com.musala.drone.repositories.mappers.LoadMapper;
 import com.musala.drone.repositories.models.LoadMO;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
-@AllArgsConstructor
 public class LoadRepositoryAdapter implements LoadRepositoryPort {
 
 
     private final LoadMOJpaRepository repository;
 
     private final LoadMapper mapper;
+
+    public LoadRepositoryAdapter(LoadMOJpaRepository repository, LoadMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
 
     /**
      * Save an element in Database
@@ -44,19 +45,19 @@ public class LoadRepositoryAdapter implements LoadRepositoryPort {
     }
 
     @Override
-    public <S extends Load> Iterable<S> save(Iterable<S> iterable) {
+    public <S extends Load> Iterable<S> saveAll(Iterable<S> entities) {
         return null;
     }
 
     @Override
-    public Load findOne(Long id) {
-        var loadMO = repository.findOne(id);
+    public Optional<Load> findById(Long id) {
+        var loadMO = repository.findById(id);
 
-        return mapper.fromModel(loadMO);
+        return mapper.fromOptionalModel(loadMO);
     }
 
     @Override
-    public boolean exists(Long aLong) {
+    public boolean existsById(Long aLong) {
         return false;
     }
 
@@ -66,34 +67,34 @@ public class LoadRepositoryAdapter implements LoadRepositoryPort {
     }
 
     @Override
-    public Iterable<Load> findAll(Iterable<Long> iterable) {
-        var loadMOs = repository.findAll(iterable);
-
-        return mapper.fromModels(loadMOs);
+    public Iterable<Load> findAllById(Iterable<Long> longs) {
+        return null;
     }
+
+
 
     @Override
     public long count() {
         return 0;
     }
 
+    @Override
+    public void deleteById(Long id) {
+        repository.deleteById(id);
+    }
+
     /**
      * Delete an drone from database
      *
-     * @param id drone id
+     * @param load drone id
      */
-    @Override
-    public void delete(Long id) {
-        repository.delete(id);
-    }
-
     @Override
     public void delete(Load load) {
         repository.delete(mapper.toModel(load));
     }
 
     @Override
-    public void delete(Iterable<? extends Load> iterable) {
+    public void deleteAll(Iterable<? extends Load> entities) {
 
     }
 

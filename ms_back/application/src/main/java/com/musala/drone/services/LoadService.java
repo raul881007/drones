@@ -54,23 +54,15 @@ public class LoadService implements LoadServicePort {
      * @author Raul Herrera
      */
     @Override
-    public Load updateLoad(Long id, Load loadUpdate) {
+    public Load updateLoad(Long id, Load loadUpdate) throws LoadNotFoundException {
+        Load load = getLoad(id);
+        load.setCode(loadUpdate.getCode());
+        load.setDrone(loadUpdate.getDrone());
+        load.setImagePath(loadUpdate.getImagePath());
+        load.setName(loadUpdate.getName());
+        load.setWeight(loadUpdate.getWeight());
 
-        try {
-            Load load = getLoad(id);
-            load.setCode(loadUpdate.getCode());
-            load.setDrone(loadUpdate.getDrone());
-            load.setImagePath(loadUpdate.getImagePath());
-            load.setName(loadUpdate.getName());
-            load.setWeight(loadUpdate.getWeight());
-
-            return loadRepositoryPort.save(load);
-        } catch (LoadNotFoundException e) {
-            e.printStackTrace();
-        }
-
-
-        return null;
+        return loadRepositoryPort.save(load);
     }
 
     /**
@@ -88,13 +80,12 @@ public class LoadService implements LoadServicePort {
     /**
      * Gets load from a single drone
      *
-     * @param drone object
+     * @param id drone
      * @return List of loads
      * @author Raul Herrera
      */
     @Override
-    public List<Load> getAllContratosByDrone(Drone drone) {
-        return drone.getId() != null ? loadRepositoryPort.findAllByDroneId(drone.getId())
-                : new ArrayList<Load>();
+    public List<Load> getAllLoadsByDrone(Long id) {
+        return loadRepositoryPort.findAllByDroneId(id);
     }
 }

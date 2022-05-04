@@ -37,11 +37,11 @@ public class LoadMO {
     private Long id;
 
     @Column(name = "name")
-    @Pattern(regexp = "[a-zA-Z0-9_-]+")
+    @Pattern(regexp = "[a-zA-Z0-9_-]+", message = "name is incorrect")
     private String name;
 
     @Column(name = "code")
-    @Pattern(regexp = "[A-Z0-9_]+")
+    @Pattern(regexp = "[A-Z0-9_]+", message = "code is incorrect")
     private String code;
 
     @Column(name = "weight")

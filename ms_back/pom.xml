@@ -6,13 +6,13 @@
   <groupId>com.musala.drone</groupId>
   <artifactId>ms_back</artifactId>
   <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <name>ms_back</name>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.4.2.RELEASE</version>
+    <version>2.6.4</version>
   </parent>
 
   <modules>

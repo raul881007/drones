@@ -35,7 +35,7 @@
     <parent>
     <artifactId>ms_back</artifactId>
     <groupId>com.musala.drone</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
   </parent>
 
   <artifactId>application</artifactId>

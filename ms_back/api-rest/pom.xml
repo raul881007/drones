@@ -4,12 +4,12 @@
   <parent>
     <artifactId>ms_back</artifactId>
     <groupId>com.musala.drone</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
   </parent>
 
   <groupId>com.musala.drone</groupId>
   <artifactId>api-rest</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
 
   <name>api-rest</name>
 
@@ -18,6 +18,26 @@
       <groupId>com.musala.drone</groupId>
       <artifactId>application</artifactId>
     </dependency>
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <scope>compile</scope>
+      </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>4.1.6.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>5.3.8</version>
+      <scope>compile</scope>
+    </dependency>
+      <dependency>
+          <groupId>jakarta.validation</groupId>
+          <artifactId>jakarta.validation-api</artifactId>
+      </dependency>
   </dependencies>
 
 </project>

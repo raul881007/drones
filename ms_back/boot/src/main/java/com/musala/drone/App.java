@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
 
-@EnableJpaRepositories(basePackages = { "com.musala.drone.repositories" })
+@EnableJpaRepositories("com.musala.drone.repositories")
 @SpringBootApplication
 @EnableAsync
 
@@ -13,6 +13,6 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        SpringApplication.run(App.class, args);
     }
 }

@@ -4,6 +4,8 @@ package com.musala.drone.ports.out;
 import com.musala.drone.domain.Drone;
 import org.springframework.data.repository.CrudRepository;
 
-public interface DroneRepositoryPort extends CrudRepository<Drone, Long> {
+import java.util.List;
 
+public interface DroneRepositoryPort extends CrudRepository<Drone, Long> {
+    List<Drone> findAllByDroneId(int charge);
 }

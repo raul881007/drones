@@ -4,13 +4,16 @@ import com.musala.drone.domain.Drone;
 import com.musala.drone.ports.out.DroneRepositoryPort;
 import com.musala.drone.repositories.DroneMOJpaRepository;
 import com.musala.drone.repositories.mappers.DroneMapper;
-import lombok.AllArgsConstructor;
+import com.musala.drone.repositories.models.DroneMO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 @Slf4j
 @Service
-@AllArgsConstructor
 public class DroneRepositoryAdapter implements DroneRepositoryPort {
 
 
@@ -18,11 +21,16 @@ public class DroneRepositoryAdapter implements DroneRepositoryPort {
 
     private final DroneMapper mapper;
 
+    public DroneRepositoryAdapter(DroneMOJpaRepository repository, DroneMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
+
     /**
      * Save an element in Database
-     * 
+     *
      * @param drone element to save in database
-     * @return drone object
+     * @return Drone object
      * @author Raul Herrera
      */
     @Override
@@ -32,25 +40,24 @@ public class DroneRepositoryAdapter implements DroneRepositoryPort {
 
         var droneSaved = repository.save(droneModel);
 
-        return mapper.fromModel(droneSaved);
+        return mapper.fromModel(droneModel);
 
     }
 
-
     @Override
-    public <S extends Drone> Iterable<S> save(Iterable<S> iterable) {
+    public <S extends Drone> Iterable<S> saveAll(Iterable<S> entities) {
         return null;
     }
 
     @Override
-    public Drone findOne(Long id) {
-        var contratoMO = repository.findOne(id);
+    public Optional<Drone> findById(Long id) {
+        var droneMO = repository.findById(id);
 
-        return mapper.fromModel(contratoMO);
+        return mapper.fromOptionalModel(droneMO);
     }
 
     @Override
-    public boolean exists(Long aLong) {
+    public boolean existsById(Long aLong) {
         return false;
     }
 
@@ -60,31 +67,26 @@ public class DroneRepositoryAdapter implements DroneRepositoryPort {
     }
 
     @Override
-    public Iterable<Drone> findAll(Iterable<Long> iterable) {
-        var droneMOs = repository.findAll(iterable);
-
-        return mapper.fromModels(droneMOs);
+    public Iterable<Drone> findAllById(Iterable<Long> longs) {
+        return null;
     }
+
+
 
     @Override
     public long count() {
         return 0;
     }
 
-    /**
-     * Delete an drone from database
-     *
-     * @param id drone id
-     */
     @Override
-    public void delete(Long id) {
-        repository.delete(id);
+    public void deleteById(Long id) {
+        repository.deleteById(id);
     }
 
     /**
      * Delete an drone from database
      *
-     * @param drone Drone object to delete
+     * @param drone drone id
      */
     @Override
     public void delete(Drone drone) {
@@ -92,7 +94,7 @@ public class DroneRepositoryAdapter implements DroneRepositoryPort {
     }
 
     @Override
-    public void delete(Iterable<? extends Drone> iterable) {
+    public void deleteAll(Iterable<? extends Drone> entities) {
 
     }
 
@@ -100,5 +102,22 @@ public class DroneRepositoryAdapter implements DroneRepositoryPort {
     public void deleteAll() {
 
     }
+
+    /**
+     * Retieves all Loads from a single drone
+     *
+     * @param id file id to delete
+     * @return element with id
+     * @author Raul Herrera
+     */
+    @Override
+    public List<Drone> findAllByDroneId(int charge) {
+        List<DroneMO> droneMOList = repository.findAllByBatteryAfter(charge);
+        List<Drone> loads = new ArrayList<Drone>();
+        droneMOList.forEach(droneMO -> loads.add(mapper.fromModel(droneMO)));
+        return loads;
+    }
+
+
 
 }

@@ -15,11 +15,11 @@ public interface LoadServicePort {
 
     Load createLoad(Load load);
 
-    Load updateLoad(Long id, Load loadUpdate);
+    Load updateLoad(Long id, Load loadUpdate) throws LoadNotFoundException;
 
     void deleteLoad(Long id);
 
-    List<Load> getAllContratosByDrone(Drone drone);
+    List<Load> getAllLoadsByDrone(Long id);
 
 
 }

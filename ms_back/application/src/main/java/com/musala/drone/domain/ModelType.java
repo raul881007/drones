@@ -5,10 +5,10 @@ import lombok.Getter;
 @Getter
 public enum ModelType {
 
-    LIGHTWEIGHT("Lightweight"),
-    MIDDLEWEIGHT("Middleweight"),
-    CRUISERWEIGHT("Cruiserweight"),
-    HEAVYWEIGHT("Heavyweight");
+    Lightweight("Lightweight"),
+    Middleweight("Middleweight"),
+    Cruiserweight("Cruiserweight"),
+    Heavyweight("Heavyweight");
 
     private final String value;
 

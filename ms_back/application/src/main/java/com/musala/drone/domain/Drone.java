@@ -25,5 +25,7 @@ public class Drone {
 
     private StateType state;
 
+    private int battery;
+
     private Set<Load> loads;
 }
