@@ -128,10 +128,11 @@ public class DroneRepositoryAdapter implements DroneRepositoryPort {
     @Override
     public BatteryHistory findAllDroneBattery() {
         String message = "Battery Drones level ";
-        for(DroneMO drone : repository.findAll()){
+        List<DroneMO> drones = repository.findAll();
+        for(DroneMO drone : drones){
             message += "[" + drone.getSerial_number() + ": " + drone.getBattery() + "]";
         }
-        return BatteryHistory.builder().date(new Date()).message(message).build();
+        return drones.size() > 0 ? BatteryHistory.builder().date(new Date()).message(message).build() : null;
     }
 
 

@@ -1,5 +1,6 @@
 package com.musala.drone.adapters;
 
+import com.musala.drone.domain.BatteryHistory;
 import com.musala.drone.domain.Drone;
 import com.musala.drone.domain.ErrorResponse;
 import com.musala.drone.domain.Load;
@@ -57,7 +58,9 @@ public class AsyncControllerAdapter {
     @Scheduled(fixedRate = 120000, initialDelay = 1000)
     public void scheduleFixedRateTaskAsync(){
         System.out.println("Fixed rate task async - " + System.currentTimeMillis() / 1000);
-        batteryHistoryServicePort.createBatteryHistory(droneServicePort.findAllDroneBattery());
+        BatteryHistory batteryHistory = droneServicePort.findAllDroneBattery();
+        if(batteryHistory != null)
+            batteryHistoryServicePort.createBatteryHistory(droneServicePort.findAllDroneBattery());
     }
 
 
