@@ -2,18 +2,18 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
-    properties:
-      hibernate:
-        format_sql: true
-        use_sql_comments: true
-        show-sql: false
     defer-datasource-initialization: true
 
   datasource:
-    url: jdbc:postgresql://${SQL_HOST:localhost}:${PORT:5433}}/${DBNAME:drone}
+    url: jdbc:postgresql://${SQL_HOST:localhost}:${PORT:5433}/${DBNAME:drone}
     username: username
     password: password
     driver-class-name: org.postgresql.Driver
+
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:data.sql
 
 server:
   port: 8081
