@@ -26,8 +26,11 @@ spring:
 
 ```
 
-You have to edit the database_endpoint, port, database_name, username and password with your own data to check all functionalities in the MicroService.
+You have to edit the database_endpoint, port, database_name, username and password with your own data and run in database ms_back/boot/src/main/resources/data.sql to check all functionalities in the MicroService.
 
-In api-rest module you can find a postman collection with operations needed 
+
+In api-rest module you can find a postman collection with operations needed
+
+
 
 
