@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "ecd703f7-c92f-411b-8941-b0be179f7579",
+		"name": "Drones",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateDrone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"serial_number\":\"my drone\",\n    \"weight\":68,\n    \"model\":\"Lightweight\",\n    \"state\":\"IDLE\",\n    \"battery\": 40\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/drones/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"drones",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDrone",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/drones/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"drones",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CheckLoadsByDrone",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/drones/getLoads/8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"drones",
+						"getLoads",
+						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CheckAvailableDronesToLoading",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/drones/getAvailableDrones/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"drones",
+						"getAvailableDrones",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CheckDroneBattery",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/drones/checkDroneBattery/9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"drones",
+						"checkDroneBattery",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ChargeDrone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 17,\n    \"name\": \"thirdLoad\",\n    \"code\": \"THISISTHECODE\",\n    \"weight\": 12,\n    \"imagePath\": \"imagePath\",\n    \"drone\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/drones/addCharge/10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"drones",
+						"addCharge",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateLoad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"thirdLoad\",\n    \"code\": \"THISISTHECODE\",\n    \"weight\": 12,\n    \"imagePath\": \"imagePath\",\n    \"drone\": null\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/loads/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"loads",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetLoad",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/loads/15",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"loads",
+						"15"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
