@@ -6,16 +6,9 @@ import com.musala.drone.repositories.models.DroneMO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-@ExtendWith(SpringExtension.class)
 class DroneMapperTest {
 
   private DroneMapper droneMapper;
@@ -25,23 +18,7 @@ class DroneMapperTest {
     droneMapper = new DroneMapperImpl();
   }
 
-  /*@Test
-  @DisplayName("Should return a DronePage of Drones for a given Page of examples")
-  void shouldReturnDronePageOfDronesForGivenPageOfDrones() {
 
-    var drones = List.of(new DroneMO());
-
-    var dronePage = new PageImpl<>(drones);
-
-    var iterableDronesPage = droneMapper.fromModels(dronePage);
-
-    assertEquals(iterableDronesPage.spliterator(), dronePage.getNumber());
-    assertEquals(iterableDronesPage.getSize(), dronePage.getSize());
-    assertEquals(iterableDronesPage.getNumberOfElements(), dronePage.getNumberOfElements());
-    assertEquals(iterableDronesPage.getTotalPages(), dronePage.getTotalPages());
-    assertEquals(iterableDronesPage.getTotalElements(), dronePage.getTotalElements());
-
-  }*/
 
   @Test
   @DisplayName("Should return an empty optional for a given empty optional model")
