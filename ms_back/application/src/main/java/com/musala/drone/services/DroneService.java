@@ -1,5 +1,6 @@
 package com.musala.drone.services;
 
+import com.musala.drone.domain.BatteryHistory;
 import com.musala.drone.domain.Drone;
 import com.musala.drone.domain.ErrorResponse;
 import com.musala.drone.domain.Load;
@@ -137,11 +138,13 @@ public class DroneService implements DroneServicePort {
      */
     @Override
     public List<Drone> checkAvailableDrones(){
-        return droneRepositoryPort.findAllByDroneId(25);
+        return droneRepositoryPort.findAllByDroneCharge(25);
 
     }
 
-
-
+    @Override
+    public BatteryHistory findAllDroneBattery() {
+        return droneRepositoryPort.findAllDroneBattery();
+    }
 
 }

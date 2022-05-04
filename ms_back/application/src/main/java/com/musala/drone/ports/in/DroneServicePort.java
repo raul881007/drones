@@ -1,6 +1,7 @@
 package com.musala.drone.ports.in;
 
 
+import com.musala.drone.domain.BatteryHistory;
 import com.musala.drone.domain.Drone;
 import com.musala.drone.domain.Load;
 import com.musala.drone.exceptions.DroneBatteryLowException;
@@ -26,5 +27,6 @@ public interface DroneServicePort {
 
     List<Drone> checkAvailableDrones();
 
+    BatteryHistory findAllDroneBattery();
 
 }

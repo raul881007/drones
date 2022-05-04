@@ -1,11 +1,13 @@
 package com.musala.drone.adapters;
 
+import com.musala.drone.domain.BatteryHistory;
 import com.musala.drone.domain.Drone;
 import com.musala.drone.domain.ErrorResponse;
 import com.musala.drone.domain.Load;
 import com.musala.drone.exceptions.DroneBatteryLowException;
 import com.musala.drone.exceptions.DroneNotFoundException;
 import com.musala.drone.exceptions.LoadNotFoundException;
+import com.musala.drone.ports.in.BatteryHistoryServicePort;
 import com.musala.drone.ports.in.DroneServicePort;
 import com.musala.drone.ports.in.LoadServicePort;
 import lombok.AllArgsConstructor;
@@ -13,6 +15,9 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -185,6 +191,5 @@ public class DroneControllerAdapter {
                 .message(ex.getMessage())
                 .build();
     }
-
 
 }

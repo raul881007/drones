@@ -1,5 +1,6 @@
 package com.musala.drone.repositories.adapters;
 
+import com.musala.drone.domain.BatteryHistory;
 import com.musala.drone.domain.Drone;
 import com.musala.drone.ports.out.DroneRepositoryPort;
 import com.musala.drone.repositories.DroneMOJpaRepository;
@@ -9,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -106,16 +108,30 @@ public class DroneRepositoryAdapter implements DroneRepositoryPort {
     /**
      * Retieves all Loads from a single drone
      *
-     * @param id file id to delete
+     * @param charge file id to delete
      * @return element with id
      * @author Raul Herrera
      */
     @Override
-    public List<Drone> findAllByDroneId(int charge) {
+    public List<Drone> findAllByDroneCharge(int charge) {
         List<DroneMO> droneMOList = repository.findAllByBatteryAfter(charge);
         List<Drone> loads = new ArrayList<Drone>();
         droneMOList.forEach(droneMO -> loads.add(mapper.fromModel(droneMO)));
         return loads;
+    }
+    /**
+     * Retieves all Loads from a single drone
+     *
+     * @return element with id
+     * @author Raul Herrera
+     */
+    @Override
+    public BatteryHistory findAllDroneBattery() {
+        String message = "Battery Drones level ";
+        for(DroneMO drone : repository.findAll()){
+            message += "[" + drone.getSerial_number() + ": " + drone.getBattery() + "]";
+        }
+        return BatteryHistory.builder().date(new Date()).message(message).build();
     }
 
 

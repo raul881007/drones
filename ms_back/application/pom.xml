@@ -49,6 +49,11 @@
             <version>5.8.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.batch</groupId>
+            <artifactId>spring-batch-core</artifactId>
+            <version>4.3.5</version>
+        </dependency>
     </dependencies>
     <parent>
     <artifactId>ms_back</artifactId>
