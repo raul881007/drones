@@ -4,7 +4,7 @@ This is a practical task to Musala Soft
 
 
 ## Configuration
-To use the configuration module the only required thing is open a connection with postgres and run the project with application.yml profile you can find it in boot ms_back/boot/src/main/resources/application.yml. In this file you gonna find the following:
+To use the configuration module the only required thing is open a connection with postgres and run the project with application.yml profile, you can find it in boot ms_back/boot/src/main/resources/application.yml. In this file you gonna find the following:
 
 ```yml
 
