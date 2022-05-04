@@ -10,9 +10,9 @@ spring:
     defer-datasource-initialization: true
 
   datasource:
-    url: jdbc:postgresql://localhost:5433/drone_test
-    username: postgres
-    password: r00t34d0r.
+    url: jdbc:postgresql://${SQL_HOST:localhost}:${PORT:5433}}/${DBNAME:drone}
+    username: username
+    password: password
     driver-class-name: org.postgresql.Driver
 
 server:
